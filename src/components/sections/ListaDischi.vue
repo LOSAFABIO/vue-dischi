@@ -1,10 +1,10 @@
 <template>
 <div class="container">
-    <div class="row row-cols-5 container-dischi">
+    <div class="row g-3 row-cols-5 container-dischi">
         <div 
         v-for="DiscoSingolo in dischiArray" 
         :key="DiscoSingolo"
-        class="col">
+        class="col-2 m-3 p-2 ">
         <DiscoSingolo
         :disco="DiscoSingolo" />
         </div>
@@ -58,6 +58,16 @@ export default {
 
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+@import "../../assets/style/Vars.scss";
+
+.row{
+    width: 80%;
+    margin: 80px auto;
+    .col-2{
+        background-color: $mainColor;
+}
+}
 
 </style>

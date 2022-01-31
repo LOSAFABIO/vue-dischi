@@ -23,12 +23,10 @@ export default {
 
 <style lang="scss" scoped>
 
-.container-dischi{
-  // background-color: rgb(40, 42, 65);
-  padding: 200px 0;
-  height: 500px;
-  width: 50%;
-  margin: 0 auto;
+@import "../assets/style/Vars.scss";
+
+.row{
+  background-color: $thirdColor;
 }
 
 </style>

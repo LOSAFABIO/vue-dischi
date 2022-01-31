@@ -12,9 +12,11 @@ export default {
 
 <style lang="scss" scoped>
 
+@import "../assets/style/Vars.scss";
+
 .container-fluid{
   height: 60px;
-  background-color: rgb(109, 109, 109);
+  background-color: $mainColor;
   justify-content: start;
   align-items: center;
 }
