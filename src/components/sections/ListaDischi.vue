@@ -2,8 +2,8 @@
 <div class="container">
     <div class="row g-3 row-cols-5 container-dischi">
         <div 
-        v-for="DiscoSingolo in dischiArray" 
-        :key="DiscoSingolo"
+        v-for="(DiscoSingolo,indice) in dischiArray" 
+        :key="indice"
         class="col-2 m-3 p-2 ">
         <DiscoSingolo
         :disco="DiscoSingolo" />
