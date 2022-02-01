@@ -1,20 +1,23 @@
 <template>
 <div class="container">
-    <div class="row w_30">
-        <div class="col">
-            <Genere 
-            @filtra ="filtraAlbum" />
+    <div v-if="!loading">
+        <div class="row w_30">
+            <div class="col">
+                <Genere 
+                @filtra ="filtraAlbum" />
+            </div>
+        </div>
+        <div class="row g-3 row-cols-8 container-dischi ">
+            <div 
+            v-for="(DiscoSingolo,indice) in albumSelect" 
+            :key="indice"
+            class="col-2 m-3 p-2 ">
+            <DiscoSingolo
+            :disco="DiscoSingolo" />
+            </div>
         </div>
     </div>
-    <div class="row g-3 row-cols-8 container-dischi ">
-        <div 
-        v-for="(DiscoSingolo,indice) in albumSelect" 
-        :key="indice"
-        class="col-2 m-3 p-2 ">
-        <DiscoSingolo
-        :disco="DiscoSingolo" />
-        </div>
-    </div>
+    <Loader v-else /> 
 </div>
 
 </template>
@@ -23,18 +26,22 @@
 
 import axios from "axios";
 import DiscoSingolo from "../commons/DiscoSingolo.vue";
-import Genere from "../commons/Genere.vue"
+import Genere from "../commons/Genere.vue";
+import Loader from "../commons/Loader.vue";
+
 
 export default {
     name       : "ListaDischi",
     components : {
         DiscoSingolo,
-        Genere
+        Genere,
+        Loader
     },
     data() {
         return{
             apiURL      : "https://flynn.boolean.careers/exercises/api/array/music",
             dischiArray : [],
+            loading     : true,
             filtroAlbum : ""
         }
     },
@@ -48,7 +55,6 @@ export default {
                 return this.dischiArray
             }
             return this.dischiArray.filter( (album) => {
-                console.log(this.dischiArray)
                 return album.genre.toLowerCase().includes(this.filtroAlbum.toLowerCase());
             });
         }
@@ -59,6 +65,7 @@ export default {
             .then((risposta) => {
                 // handle success
                 this.dischiArray = risposta.data.response;
+                this.loading = false
             })
             .catch(function (error) {
                 // handle error
